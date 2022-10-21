@@ -20,6 +20,8 @@
 	# Pushes to origin to avoid setting upstream for new branches
 	po = "!git push --set-upstream origin \"$(git rev-parse --abbrev-ref HEAD)\""
 	publish = !"git push -u origin $(git branch-name)"
+
+	sync = pull --rebase origin master
 	
 	# Pretty graph logs
 	lg1 =  log --graph --topo-order --abbrev-commit --date=short --decorate --all --boundary --pretty=format:'%C(bold blue)%ad %C(bold cyan)%h%C(reset) -%C(yellow)%d%Creset %s %Cblue[%cn]%Creset'
@@ -47,7 +49,7 @@
 	#   2. Update the feature branch with any changes from the master branch
 	#
 	##
-	feat-update = "!f(){ branch=$(git branch-name); git main; git pull; git checkout "$branch"; git rebase master; };f"
+	feat-update = "!f(){ branch=$(git branch-name); git master; git pull; git checkout "$branch"; git rebase master; };f"
 
 	# Switches to main/master branch, deletes branch from local and remote
 	kill = "!f() { \
@@ -67,6 +69,8 @@
 	
 	# Logs changes in the last day made by you
 	daily = !git log --since yesterday --date=format:'%A %d, %b at %H:%M'   --no-merges --author $(git config user.email) --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(white)%s%C(reset)%n''          %C(dim white)%ad%C(reset)%C(yellow) [%ar]%C(reset)%C(bold yellow)%d%C(reset)''' 
+
+ 	log-json = log --pretty=format:'{%n  \"commit\": \"%H\",%n  \"author\": \"%an <%ae>\",%n  \"date\": \"%ad\",%n  \"message\": \"%f\"%n},'
 
 
 [core]
