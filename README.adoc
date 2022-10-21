@@ -1,4 +1,4 @@
-= gitconfig
+= dotfiles
 
 📝 Some common git configs templates that I personally use.
 
