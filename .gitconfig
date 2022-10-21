@@ -31,7 +31,7 @@
 	lg = !"git lg1"
 
 	# Adds everything to stage, commits with message and pushes origin
-	lazy = "!f() { git add -A && git commit -m \"$@\" && git po; }; f" 
+	lazy = "!f() { git add -A && git commit -m \"$@\" && git push origin; }; f" 
 
 	# Switches to the repo's main branch regardless the name
 	main = !git switch $(awk -F "/" '{print $NF}' .git/refs/remotes/origin/HEAD);
