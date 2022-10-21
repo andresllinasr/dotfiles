@@ -1,3 +1,5 @@
+	#Ubuntu gedit ~/.gitconfig
+
 [user]
 	email = andresllinasr@gmail.com
 	name = andresllinasr
