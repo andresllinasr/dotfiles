@@ -1,0 +1,20 @@
+= gitconfig
+
+📝 Some common git configs templates that I personally use.
+
+== Global config
+
+The `.gitconfig` file is intended to be (at least part of) a user's
+ global `~/.gitconfig`.
+
+== Contributing
+
+You want to make this even more awesome? That's great! You can open a
+ PR on Github (or any other repo hosting site that you may find this
+ hosted), or email changes to me. Consider including a relevant
+ gitmoji in the commit message!
+
+If you fork and make your own custom changes, don't want bother
+ proposing those changes back to the original repo. Just consider
+ sending me a link anyway so that I can see what cool things you're
+ doing. 😉

@@ -1,0 +1,75 @@
+[user]
+	email = andresllinasr@gmail.com
+	name = andresllinasr
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[alias]
+	s =  status --short --branch
+	co = checkout
+	b = branch
+	br = branch
+	unstage = reset HEAD
+	# Uncommits and unestages last changes
+	fuckit = reset --hard
+	undo = reset HEAD~1 --mixed
+	me = config user.name
+
+	# Pushes to origin to avoid setting upstream for new branches
+	po = "!git push --set-upstream origin \"$(git rev-parse --abbrev-ref HEAD)\""
+	publish = !"git push -u origin $(git branch-name)"
+	
+	# Pretty graph logs
+	lg1 =  log --graph --topo-order --abbrev-commit --date=short --decorate --all --boundary --pretty=format:'%C(bold blue)%ad %C(bold cyan)%h%C(reset) -%C(yellow)%d%Creset %s %Cblue[%cn]%Creset'
+	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --no-merges
+	lg = !"git lg1"
+
+	# Adds everything to stage, commits with message and pushes origin
+	lazy = "!f() { git add -A && git commit -m \"$@\" && git po; }; f" 
+
+	# Switches to the repo's main branch
+	main = !git switch $(awk -F "/" '{print $NF}' .git/refs/remotes/origin/HEAD);
+
+	##
+	# Create a new feature branch:
+	#
+	#   1. Update the master branch
+	#   2. Create a new branch with your feature name and based on the master branch
+	##
+	feat = "!f(){ branch=$1; git main; git pull; git checkout -b "$branch" master; };f"
+
+	##
+	# Update the feature branch:
+	#
+	#   1. Update the master branch
+	#   2. Update the feature branch with any changes from the master branch
+	#
+	##
+	feat-update = "!f(){ branch=$(git branch-name); git main; git pull; git checkout "$branch"; git rebase master; };f"
+
+	# Switches to main/master branch, deletes branch from local and remote
+	kill = "!f() { \
+		git switch $(awk -F "/" '{print $NF}' .git/refs/remotes/origin/HEAD); \
+        		git push origin --delete "$@"; \
+        		git branch -D "$@"; \
+    	}; f"
+
+	# Lists contributors by number of commits
+	rank = shortlog -sn --no-merges
+
+	# Commit and push everything to new branch
+	fire = !sh -c \"git checkout -b wip/fire/`git me` && \\\n         git stage -A && \\\n         git commit -m wip-fire-alert && \\\n         git push origin wip/fire/`git me`\"
+
+	# Changes remote for new url (have to specify)
+	upremote = git remote set-url origin
+	
+	# Logs changes in the last day made by you
+	daily = !git log --since yesterday --date=format:'%A %d, %b at %H:%M'   --no-merges --author $(git config user.email) --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(white)%s%C(reset)%n''          %C(dim white)%ad%C(reset)%C(yellow) [%ar]%C(reset)%C(bold yellow)%d%C(reset)''' 
+
+
+[core]
+	# Always exclude env files
+	excludesfile = ~/.gitignore
+	editor = \"C:\\Users\\AndresLlinas\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\code\" --wait
