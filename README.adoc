@@ -1,6 +1,6 @@
 = dotfiles
 
-📝 Some common git configs that I personally use.
+📝 Some common configs that I personally use.
 
 == Global config
 
