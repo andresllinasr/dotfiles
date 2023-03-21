@@ -9,6 +9,10 @@ The `.gitconfig` file is intended to be (at least part of) a user's
  
 == Installation
 
+I like to set VS Code as editor first to make things easier.
+Set core editor with this command: git config --global core.editor "code --wait"
+If this doesn't work, you'll probably need to enable vscode command.
+
 The global Git config file is stored in the user’s home directory. Depending on yor OS:
 
 C:\Users\<username> on Windows
@@ -17,12 +21,13 @@ C:\Users\<username> on Windows
 
 Open git config file: git config --global --edit
 
+Copy and paste the contents of .gitconfig
+
 == Enable VS Code command: 
 
 For mac:
 1. Launch VS Code.
 2. Open the Command Palette (⇧⌘P) and type 'shell command' to find the Shell Command: Install 'code' command in PATH command.
-3. Set core editor with this command: git config --global core.editor "code --wait"
 
 == Contributing
 
