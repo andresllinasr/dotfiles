@@ -9,19 +9,20 @@ The `.gitconfig` file is intended to be (at least part of) a user's
  
 == Installation
 
+Note:
 I like to set VS Code as editor first to make things easier.
 Set core editor with this command: git config --global core.editor "code --wait"
-If this doesn't work, you'll probably need to enable vscode command.
+If this doesn't work, you'll probably need to enable vscode command first.
+
+1. Open git config file: git config --global --edit
+
+2. Copy and paste the contents of .gitconfig
 
 The global Git config file is stored in the user’s home directory. Depending on yor OS:
 
-C:\Users\<username> on Windows
-~home/<username> on Linux
-~root/ for sudo operations
-
-Open git config file: git config --global --edit
-
-Copy and paste the contents of .gitconfig
+- C:\Users\<username> on Windows
+- ~home/<username> on Linux
+- ~root/ for sudo operations
 
 == Enable VS Code command: 
 
