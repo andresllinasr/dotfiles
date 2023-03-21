@@ -77,7 +77,22 @@
 
  	log-json = log --pretty=format:'{%n  \"commit\": \"%H\",%n  \"author\": \"%an <%ae>\",%n  \"date\": \"%ad\",%n  \"message\": \"%f\"%n},'
 
+[push] 
+        autoSetupRemote = true
 
 [core]
 	# Always exclude env files
 	excludesfile = ~/.gitignore
+	editor = code --wait
+
+[diff]
+  tool = vscode
+
+[difftool "vscode"]
+  cmd = code --wait --diff $LOCAL $REMOTE
+
+[merge]
+  tool = vscode
+  
+[mergetool "vscode"]
+  cmd = code --wait $MERGED
