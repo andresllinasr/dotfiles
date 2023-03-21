@@ -81,4 +81,3 @@
 [core]
 	# Always exclude env files
 	excludesfile = ~/.gitignore
-	editor = \"C:\\Users\\AndresLlinas\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\code\" --wait
