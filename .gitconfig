@@ -1,4 +1,7 @@
-	#Ubuntu gedit ~/.gitconfig
+	# Commands to edit the gitconfig in each OS:
+	# Windows: notepad ~/.gitconfig.
+	# Linux: gedid ~/.gitconfig
+	# Mac: git config --global --edit
 
 [user]
 	email = andresllinasr@gmail.com
