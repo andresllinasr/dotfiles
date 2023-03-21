@@ -9,14 +9,20 @@ The `.gitconfig` file is intended to be (at least part of) a user's
  
 == Installation
 
+The global Git config file is stored in the user’s home directory. Depending on yor OS:
+
+C:\Users\<username> on Windows
+~home/<username> on Linux
+~root/ for sudo operations
+
+Open git config file: git config --global --edit
+
+== Enable VS Code command: 
+
 For mac:
 1. Launch VS Code.
 2. Open the Command Palette (⇧⌘P) and type 'shell command' to find the Shell Command: Install 'code' command in PATH command.
 3. Set core editor with this command: git config --global core.editor "code --wait"
-4. Open git config file: git config --global --edit
-
-For Ubuntu:
-To open git config file with default text editor: gedit ~/.gitconfig
 
 == Contributing
 
