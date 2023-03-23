@@ -7,6 +7,9 @@
 	process = git-lfs filter-process
 	required = true
 [alias]
+	
+	rename = "!moveit() { git branch -m $1 $2; git push origin :$1; git push --set-upstream origin $2; }; moveit"
+	
 	s =  status --short --branch
 	co = checkout
 	b = branch
