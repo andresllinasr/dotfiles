@@ -64,7 +64,7 @@
 	##
 	feat-update = "!f(){ branch=$(git branch-name); git main; git pull; git checkout "$branch"; git rebase main; };f"
 
-	# Switches to main/main branch, deletes branch from local and remote
+	# Switches to main branch, deletes branch from local and remote
 	kill = "!f() { \
 		git switch $(awk -F "/" '{print $NF}' .git/refs/remotes/origin/HEAD); \
         		git push origin --delete "$@"; \
