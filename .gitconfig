@@ -10,6 +10,8 @@
 
 [alias]
 
+	rename = "!moveit() { git branch -m $1 $2; git push origin :$1; git push --set-upstream origin $2; }; moveit"
+
 	list=  !git config --get-regexp alias
 	conf = config --global --edit
 
