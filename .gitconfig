@@ -15,7 +15,6 @@
 	list=  !git config --get-regexp alias
 	conf = config --global --edit
 
-	edit = config --edit --global
 	s =  status --short --branch
 	co = checkout
 	b = branch
