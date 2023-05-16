@@ -1,60 +1,69 @@
+	# Commands to edit the gitconfig in each OS:
+	# Windows: notepad ~/.gitconfig.
+	# Linux: gedid ~/.gitconfig
+	# Mac: nano ~/.gitconfig.
+	# Or just git config --global --edit
+
 [user]
 	email = andresllinasr@gmail.com
 	name = andresllinasr
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+
 [alias]
-	
-	rename = "!moveit() { git branch -m $1 $2; git push origin :$1; git push --set-upstream origin $2; }; moveit"
-	
+
+	list=  !git config --get-regexp alias
+	conf = config --global --edit
+
+	edit = config --edit --global
 	s =  status --short --branch
 	co = checkout
 	b = branch
-	br = branch
+	c = commit
+	a = add
+	aa = add -A
+	f = fetch
 	unstage = reset HEAD
 	# Uncommits and unestages last changes
 	fuckit = reset --hard
 	undo = reset HEAD~1 --mixed
 	me = config user.name
 
-	# Pushes to origin to avoid setting upstream for new branches
+	list = "!git config --get-regexp '^alias\\.' | cut -c 7- | sed 's/ / = /'"
+
+	# Push to origin without setting upstream for new branches.
 	po = "!git push --set-upstream origin \"$(git rev-parse --abbrev-ref HEAD)\""
 	publish = !"git push -u origin $(git branch-name)"
 
-	sync = pull --rebase origin master
+	sync = pull --rebase origin main
 	
 	# Pretty graph logs
 	lg1 =  log --graph --topo-order --abbrev-commit --date=short --decorate --all --boundary --pretty=format:'%C(bold blue)%ad %C(bold cyan)%h%C(reset) -%C(yellow)%d%Creset %s %Cblue[%cn]%Creset'
 	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --no-merges
 	lg = !"git lg1"
 
-	# Adds everything to stage, commits with message and pushes origin
+	# Stage, commit, and push everything.
 	lazy = "!f() { git add -A && git commit -m \"$@\" && git push origin; }; f" 
 
-	# Switches to the repo's main branch regardless the name
+	# Switches to repo's main branch, regardless of name.
 	main = !git switch $(awk -F "/" '{print $NF}' .git/refs/remotes/origin/HEAD);
 
 	##
 	# Create a new feature branch:
 	#
-	#   1. Update the master branch
-	#   2. Create a new branch with your feature name and based on the master branch
+	#   1. Update the main branch
+	#   2. Create a new branch with your feature name and based on the main branch
 	##
-	feat = "!f(){ branch=$1; git main; git pull; git checkout -b "$branch" master; };f"
+	feat = "!f(){ branch=$1; git main; git pull; git checkout -b "$branch" main; };f"
 
 	##
 	# Update the feature branch:
 	#
-	#   1. Update the master branch
-	#   2. Update the feature branch with any changes from the master branch
+	#   1. Update the main branch
+	#   2. Update the feature branch with any changes from the main branch
 	#
 	##
-	feat-update = "!f(){ branch=$(git branch-name); git master; git pull; git checkout "$branch"; git rebase master; };f"
+	feat-update = "!f(){ branch=$(git branch-name); git main; git pull; git checkout "$branch"; git rebase main; };f"
 
-	# Switches to main/master branch, deletes branch from local and remote
+	# Switches to main/main branch, deletes branch from local and remote
 	kill = "!f() { \
 		git switch $(awk -F "/" '{print $NF}' .git/refs/remotes/origin/HEAD); \
         		git push origin --delete "$@"; \
@@ -67,16 +76,19 @@
 	# Commit and push everything to new branch
 	fire = !sh -c \"git checkout -b wip/fire/`git me` && \\\n         git stage -A && \\\n         git commit -m wip-fire-alert && \\\n         git push origin wip/fire/`git me`\"
 
-	# Changes remote for new url (have to specify)
-	upremote = git remote set-url origin
+	# Changes remote to a new url (have to specify)
+	update-remote = git remote set-url origin
 	
 	# Logs changes in the last day made by you
 	daily = !git log --since yesterday --date=format:'%A %d, %b at %H:%M'   --no-merges --author $(git config user.email) --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(white)%s%C(reset)%n''          %C(dim white)%ad%C(reset)%C(yellow) [%ar]%C(reset)%C(bold yellow)%d%C(reset)''' 
 
  	log-json = log --pretty=format:'{%n  \"commit\": \"%H\",%n  \"author\": \"%an <%ae>\",%n  \"date\": \"%ad\",%n  \"message\": \"%f\"%n},'
 
+	diff-upstream = !git fetch origin && git diff main origin/main
+
+
 [push] 
-        autoSetupRemote = true
+    autoSetupRemote = true
 
 [core]
 	# Always exclude env files
@@ -84,13 +96,13 @@
 	editor = code --wait
 
 [diff]
-  tool = vscode
+  	tool = vscode
 
 [difftool "vscode"]
-  cmd = code --wait --diff $LOCAL $REMOTE
+	cmd = code --wait --diff $LOCAL $REMOTE
 
 [merge]
-  tool = vscode
-
+  	tool = vscode
+  
 [mergetool "vscode"]
-  cmd = code --wait $MERGED
+  	cmd = code --wait $MERGED
