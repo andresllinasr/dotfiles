@@ -12,7 +12,7 @@ The `.gitconfig` file is intended to be (at least part of) a user's
 Note:
 I like to set VS Code as editor first to make things easier.
 Set core editor with this command: git config --global core.editor "code --wait"
-If this doesn't work, you'll probably need to enable vscode command first.
+If this doesn't work, you'll probably need to enable vscode command first (see mac docs: https://code.visualstudio.com/docs/setup/mac#:~:text=Launch%20VS%20Code.,code'%20command%20in%20PATH%20command.).
 
 1. Open git config file: git config --global --edit
 
