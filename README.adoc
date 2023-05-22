@@ -1,55 +1,47 @@
 = dotfiles
 
-📝 Some common configs that I personally use.
+📝 This repository is created to centralize and keep my config files updated across different computers and operating systems. The configurations shared here are highly personalized. However, I believe the structure and approach I've established can be helpful for keeping your own config files centralized, updated, and organized.
 
-== Global config
+== Global Config
 
-The `.gitconfig` file is intended to be (at least part of) a user's
- global `~/.gitconfig`.
- 
+The `.gitconfig` file is meant to be part of a user's global `~/.gitconfig`.
+
 == Installation
 
-Note:
-I like to set VS Code as editor first to make things easier.
-Set core editor with this command: git config --global core.editor "code --wait"
-If this doesn't work, you'll probably need to enable vscode command first (see mac docs: https://code.visualstudio.com/docs/setup/mac#:~:text=Launch%20VS%20Code.,code'%20command%20in%20PATH%20command.).
+To make things easier, I recommend setting VS Code as your default editor first. Set the core editor using this command: `git config --global core.editor "code --wait"`. If it doesn't work, you may need to enable the VS Code command first. (See the macOS docs: https://code.visualstudio.com/docs/setup/mac#:~:text=Launch%20VS%20Code.,code'%20command%20in%20PATH%20command.)
 
-1. Open git config file: git config --global --edit
+1. Open the Git config file:
+   ```
+   git config --global --edit
+   ```
 
-2. Copy and paste the contents of .gitconfig
+2. Copy and paste the contents of `.gitconfig` or use the setup script.
 
-The global Git config file is stored in the user’s home directory. Depending on yor OS:
+The global Git config file is stored in the user's home directory. The location varies depending on your operating system:
+- Windows: `C:\Users\<username>`
+- Linux: `~home/<username>`
+- Sudo operations: `~root/`
 
-- C:\Users\<username> on Windows
-- ~home/<username> on Linux
-- ~root/ for sudo operations
+== How to Install on Windows using `script.bat`
 
-== How to Install in Windows using script.bat
+The script does the work for you! It automatically updates and copies configuration files, ensuring you're always rocking the latest version. Tested on Windows 11. 😎
 
-The script does the work for you! It automatically updates and copies configuration files, making sure your you're rocking the latest version always.
-Only tested on Windows 11.
+1. Clone or download the `.zip` of the main branch from this repository.
+2. Simply click on the `script.bat` file to run it. The script takes care of the following steps:
+   - Checks if Git is installed and accessible.
+   - Runs `git pull` to ensure the latest version.
+   - Copies the global config files to the home directory.
 
-1. Clone or download the .zip of the main branch in this repository
-2. Run the `script.bat` file by clicking on it.
-   The script will perform the following steps:
-   - Check if Git is installed and accessible.
-   - Run 'git pull' to ensure the latest version.
-   - Copy the global config files to the home directory
-Once the script has finished executing, the application should be installed and configured.
+Once the script has finished executing, your config should be installed and configured.
 
-== Enable VS Code command: 
+== Enabling the VS Code Command
 
-For mac:
+For macOS users:
 1. Launch VS Code.
-2. Open the Command Palette (⇧⌘P) and type 'shell command' to find the Shell Command: Install 'code' command in PATH command.
+2. Open the Command Palette (⇧⌘P) and type 'shell command' to find the "Shell Command: Install 'code' command in PATH" command.
 
 == Contributing
 
-You want to make this even more awesome? That's great! You can open a
- PR on Github (or any other repo hosting site that you may find this
- hosted)
+Want to make this even more awesome? That's great! You can open a pull request on GitHub or any other hosting platform where you find this repository.
 
-If you fork and make your own custom changes, don't bother yourself
- proposing those changes back to the original repo. Consider
- sending me a link anyway so that I can see what cool things you're
- doing. 😉
+If you fork and make your own custom changes, don't hesitate to share a link with me. I'd love to see the cool things you're doing. 😉
