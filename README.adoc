@@ -24,6 +24,19 @@ The global Git config file is stored in the user’s home directory. Depending o
 - ~home/<username> on Linux
 - ~root/ for sudo operations
 
+== How to Install in Windows using script.bat
+
+The script does the work for you! It automatically updates and copies configuration files, making sure your you're rocking the latest version always.
+Only tested on Windows 11.
+
+1. Clone or download the .zip of the main branch in this repository
+2. Run the `script.bat` file by clicking on it.
+   The script will perform the following steps:
+   - Check if Git is installed and accessible.
+   - Run 'git pull' to ensure the latest version.
+   - Copy the global config files to the home directory
+Once the script has finished executing, the application should be installed and configured.
+
 == Enable VS Code command: 
 
 For mac:
