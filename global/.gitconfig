@@ -14,6 +14,7 @@
 
 	list=  !git config --get-regexp alias
 	conf = config --global --edit
+	me = config user.name
 
 	s =  status --short --branch
 	co = checkout
@@ -23,10 +24,10 @@
 	aa = add -A
 	f = fetch
 	unstage = reset HEAD
-	# Uncommits and unestages last changes
+
+	# Completely wipes changes
 	fuckit = reset --hard
-	undo = reset HEAD~1 --mixed
-	me = config user.name
+	uncommit = reset HEAD~1 --mixed
 
 	# git stash apply last
 	stash-apply = stash apply stash@{0}
