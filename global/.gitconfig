@@ -29,7 +29,11 @@
 	me = config user.name
 
 	# git stash apply last
-	sal = stash apply stash@{0}
+	stash-apply = stash apply stash@{0}
+	stash-drop = stash drop stash@{0}
+	
+	# remove branches without remote
+	remove-merged = "!git fetch -p && for branch in `git branch -vv --no-color | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done"
 
 	list = "!git config --get-regexp '^alias\\.' | cut -c 7- | sed 's/ / = /'"
 
