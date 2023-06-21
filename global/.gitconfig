@@ -28,6 +28,9 @@
 	undo = reset HEAD~1 --mixed
 	me = config user.name
 
+	# git stash apply last
+	sal = stash apply stash@{0}
+
 	list = "!git config --get-regexp '^alias\\.' | cut -c 7- | sed 's/ / = /'"
 
 	# Push to origin without setting upstream for new branches.
