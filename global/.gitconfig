@@ -29,6 +29,22 @@
 	fuckit = reset --hard
 	uncommit = reset HEAD~1 --mixed
 
+  # 1. Save the last commit message
+  # 2. Undo the last commit but keep changes (unstaged)
+  # 3. If no files are staged, abort to avoid an empty commit
+  # 4. Otherwise, recommit with the same message
+  forgot = "!f() { \
+    MSG=$(git log -1 --pretty=%B) && \
+    git reset HEAD~1 --soft && \
+    if git diff --cached --quiet; then \
+      echo 'No files staged. Aborting commit.'; \
+      exit 1; \
+    else \
+      printf '%s' \"$MSG\" | git commit --file=-; \
+    fi; \
+  }; f"
+
+  save = "!f() { git stash push -m \"$1\"; }; f"
 	# git stash apply last
 	stash-apply = stash apply stash@{0}
 	stash-drop = stash drop stash@{0}
@@ -115,3 +131,8 @@
   
 [mergetool "vscode"]
   	cmd = code --wait $MERGED
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
